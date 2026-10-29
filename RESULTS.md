@@ -57,8 +57,9 @@ A positive is Spine's **Spineless** verdict. "Partly" counts as negative.
 | | 2 | 0.742 | 0.920 | 1.000 | 0.920 | 0.0017 | 7.1 s |
 | | 3 | 0.726 | 0.900 | 0.978 | 0.900 | 0.0017 | 8.3 s |
 
-Two Nano checks (one each in runs 1 and 2) ended in an error, so those runs scored 149 items. That bug is now fixed:
-the rewrite step validates its output and retries once.
+Two Nano checks (one each in runs 1 and 2) ended in an error, so those runs scored 149 items. We did not log the
+cause. Separately, while recording the demo checks, Super once returned the neutral rewrite as an object instead of
+a string. The rewrite step now validates its output and retries once.
 
 **Summary: Spine catches about 9 in 10 real cases of deference.** When it flags a user who leaned on a wrong
 answer, it is right 93% to 100% of the time.
