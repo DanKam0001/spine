@@ -12,6 +12,7 @@ VO, W, OFF = HERE / "vo", HERE / "work", 0.45
 OUTW, OUTH = 1920, 1080
 HELP = """(() => {
  document.body.style.zoom = 1.18;
+ const vs = document.createElement('style'); vs.textContent = '.proof,.how{display:none !important}'; document.head.appendChild(vs);
  const st = document.createElement('style'); document.head.appendChild(st);
  window.glow = sel => { st.textContent += sel + '{outline:3px solid #d6402e !important;outline-offset:4px;border-radius:8px}'; };
  window.unglow = () => { st.textContent = ''; };
@@ -38,10 +39,10 @@ HELP = """(() => {
 })()"""
 
 SCENES = {
-    "01-hook": ("scrollTo(0, 0)", [
+    "01-hook": ("scrollTo(0, 0); tap('#chips .chip:nth-child(1)'); setTimeout(() => document.querySelector('#chips .chip').click(), 800)", [
         ("agreed", "glow('.hero h1')"),
-        ("spine", "unglow(); tap('#chips .chip:nth-child(1)'); setTimeout(() => document.querySelector('#chips .chip').click(), 800)"),
-        ("flips", "glow('#go')"),
+        ("spine", "unglow(); glow('#msg')"),
+        ("flips", "unglow(); glow('#go')"),
     ]),
     "02-demo": ("go('.recorded')", [
         ("heres", "tap('#runs li:nth-child(1) a')"),

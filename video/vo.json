@@ -1,7 +1,7 @@
 [
  [
   "01-hook",
-  "Your AI agreed with you. But would it still, if you'd said the opposite? This is Spine. It flips the opinion in your question, and asks again."
+  "Your AI agreed with you. But would it still, if you'd said the opposite? This is Spine, for anyone checking a big decision with an AI. Spine flips the opinion in your question, and asks again."
  ],
  [
   "02-demo",
@@ -17,7 +17,7 @@
  ],
  [
   "05-how",
-  "Under the hood, it's four steps on Neb-ee-us Token Factory. Nemmo-tron Nano finds the stance you voiced. Super rewrites your message twice, changing only that stance: once neutral, once flipped. The model under test answers all three. And Ultra decides whether the conclusion followed the facts, or followed you. About one cent per check."
+  "Under the hood, it's four steps on Nebbius Token Factory. Nemmo-tron Nano finds the stance you voiced. Super rewrites your message twice, changing only that stance: once neutral, once flipped. The model under test answers all three. And Ultra decides whether the conclusion followed the facts, or followed you. About one cent per check."
  ],
  [
   "06-measured",
@@ -25,6 +25,6 @@
  ],
  [
   "07-close",
-  "Quitting a job, moving money, sending an essay: you deserve to know whose answer it was. Spine. Open source, and live now on Nemmo-tron and Neb-ee-us Token Factory."
+  "Quitting a job, moving money, sending an essay: you deserve to know whose answer it was. Spine. Open source, and live now on Nemmo-tron and Nebbius Token Factory."
  ]
 ]
