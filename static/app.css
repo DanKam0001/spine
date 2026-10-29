@@ -11,6 +11,7 @@
   }
 }
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.55 Inter, system-ui, sans-serif; }
 a { color: inherit; }
 main { max-width: 1240px; margin: 0 auto; padding: 0 16px 60px; }
@@ -86,13 +87,15 @@ mark { background: var(--hl); color: inherit; border-radius: 3px; padding: 0 2px
 .cost table { border-collapse: collapse; margin-top: 6px; }
 .cost td { padding: 2px 14px 2px 0; }
 
-.recorded, .how, .proof { margin-top: 40px; }
+.how, .proof { margin-top: 40px; }
+.recorded { margin-top: 22px; }
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 14px 0 4px; }
 .stats div { border-left: 3px solid var(--red); padding: 2px 0 2px 14px; }
 .stats b { display: block; font: 800 34px Fraunces, serif; letter-spacing: -.5px; }
 .stats span { color: var(--mute); font-size: 14px; }
 .mini.no_stance { color: var(--mute); background: var(--bg); border: 1px solid var(--line); }
-.recorded h2, .how h2, .proof h2 { font: 800 24px Fraunces, serif; margin: 0 0 4px; }
+.recorded h2 { font: 800 19px Fraunces, serif; margin: 0; }
+.how h2, .proof h2 { font: 800 24px Fraunces, serif; margin: 0 0 4px; }
 #runs { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; margin-top: 12px; }
 #runs a { display: flex; gap: 10px; align-items: center; text-decoration: none; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-size: 14px; }
 #runs a:hover { border-color: var(--ink); }
