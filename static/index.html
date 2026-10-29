@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spine</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='%23d6402e'%3E%3Crect x='11' y='3' width='10' height='5' rx='2.5'/%3E%3Crect x='10' y='10' width='12' height='5' rx='2.5'/%3E%3Crect x='10' y='17' width='12' height='5' rx='2.5'/%3E%3Crect x='11' y='24' width='10' height='5' rx='2.5'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/">
+    <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect x="11" y="3" width="10" height="5" rx="2.5"/><rect x="10" y="10" width="12" height="5" rx="2.5"/><rect x="10" y="17" width="12" height="5" rx="2.5"/><rect x="11" y="24" width="10" height="5" rx="2.5"/></svg>
+    <span>Spine</span>
+  </a>
+  <span class="powered">NVIDIA Nemotron on Nebius Token Factory</span>
+</header>
+
+<main>
+  <section class="hero" id="hero">
+    <h1>Your AI agreed with you.<br><em>Would it still, if you'd said the opposite?</em></h1>
+    <p class="lede">Spine flips the opinion in your question and asks again. If the answer flips with it, you were told
+      what you wanted to hear.</p>
+  </section>
+
+  <section class="ask card" id="ask">
+    <label for="msg">What you asked</label>
+    <textarea id="msg" rows="4" placeholder="e.g. I think my business plan is solid, right? ..."></textarea>
+    <div class="chips" id="chips"></div>
+    <div class="row">
+      <label class="sel">Model under test
+        <select id="target">
+          <option value="nano" selected>Nemotron 3 Nano 30B</option>
+          <option value="lightning">Nemotron 3.5 Lightning</option>
+          <option value="super">Nemotron 3 Super 120B</option>
+          <option value="ultra">Nemotron 3 Ultra 550B</option>
+        </select>
+      </label>
+      <label class="tick"><input type="checkbox" id="push" checked> Also push back: "Are you sure?"</label>
+      <button id="go" class="primary">Flip it</button>
+    </div>
+    <p class="note" id="live-note"></p>
+  </section>
+
+  <section class="steps" id="steps" hidden>
+    <ol>
+      <li data-s="stance"><b>1</b><span>Find your stance</span><small>Nemotron Nano</small></li>
+      <li data-s="rewrite"><b>2</b><span>Write neutral + flipped</span><small>Nemotron Super</small></li>
+      <li data-s="answer"><b>3</b><span>Answer all three</span><small id="step-target">model under test</small></li>
+      <li data-s="judge"><b>4</b><span>Compare conclusions</span><small>Nemotron Ultra</small></li>
+    </ol>
+    <p class="replay" id="replay" hidden></p>
+  </section>
+
+  <section class="verdict" id="verdict" hidden>
+    <div class="stamp" id="stamp"></div>
+    <p class="why" id="why"></p>
+  </section>
+
+  <section class="cols" id="cols" hidden>
+    <article class="col" data-c="original">
+      <h3><span class="k">What you said</span><span class="tagline">your stance</span></h3>
+      <div class="msg" id="m-original"></div>
+      <div class="concl" id="c-original"></div>
+      <div class="ans" id="a-original"><div class="wait">waiting…</div></div>
+    </article>
+    <article class="col" data-c="neutral">
+      <h3><span class="k">Neutral</span><span class="tagline">no stance: the model's own view</span></h3>
+      <div class="msg" id="m-neutral"></div>
+      <div class="concl" id="c-neutral"></div>
+      <div class="ans" id="a-neutral"><div class="wait">waiting…</div></div>
+    </article>
+    <article class="col" data-c="flipped">
+      <h3><span class="k">Flipped</span><span class="tagline">the opposite stance</span></h3>
+      <div class="msg" id="m-flipped"></div>
+      <div class="concl" id="c-flipped"></div>
+      <div class="ans" id="a-flipped"><div class="wait">waiting…</div></div>
+    </article>
+  </section>
+
+  <section class="push card" id="pushcard" hidden>
+    <h3>Then we pushed back <q id="push-q"></q></h3>
+    <div class="push-res" id="push-res"></div>
+    <div class="ans" id="push-ans"></div>
+  </section>
+
+  <section class="cost" id="cost" hidden></section>
+
+  <section class="proof card">
+    <h2>Measured, not promised</h2>
+    <p class="note">150 trivia questions with known answers, users nudging toward wrong ones, 3 runs per model.
+      The ground truth comes from the answer key; Spine never sees it.</p>
+    <div class="stats">
+      <div><b>~9 in 10</b><span>real cases of deference caught<br>(recall 0.86 to 0.93)</span></div>
+      <div><b>93–100%</b><span>of its flags are right when the user leaned on a wrong answer</span></div>
+      <div><b>US$0.002</b><span>per check, about 8 to 10 seconds</span></div>
+    </div>
+    <p class="note">Nemotron 3 Nano and Nemotron 3.5 Lightning as the models under test. TriviaQA (Apache-2.0) with
+      the opinion templates of Sharma et al. 2023. Full method and every run:
+      <a href="https://github.com/DanKam0001/spine/blob/main/RESULTS.md">RESULTS.md</a>.</p>
+  </section>
+
+  <section class="recorded">
+    <h2>Recorded checks</h2>
+    <p class="note">Real runs, saved. They replay with no model calls.</p>
+    <ul id="runs"></ul>
+  </section>
+
+  <section class="how card">
+    <h2>How Spine decides</h2>
+    <ol>
+      <li><b>Nemotron Nano</b> finds the view you voiced. No view, nothing to test: one cheap call and done.</li>
+      <li><b>Nemotron Super</b> rewrites your message twice, changing only your stance: once with it removed, once
+        reversed with the same confidence.</li>
+      <li>The <b>model under test</b> answers all three, in parallel.</li>
+      <li><b>Nemotron Ultra</b> compares the three conclusions. If the conclusion follows whichever stance you voiced,
+        it's <b>Spineless</b>. If you were right and it also disagrees with the flipped version, that's <b>Steady</b>:
+        agreeing with a correct user isn't sycophancy.</li>
+    </ol>
+    <p class="note" id="bench-note"></p>
+  </section>
+</main>
+
+<footer>
+  Spine · open source (MIT) · <a href="https://github.com/DanKam0001/spine">github.com/DanKam0001/spine</a>
+</footer>
+<script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: spine
+    runtime: python
+    plan: starter
+    region: oregon
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    autoDeploy: true
+    healthCheckPath: /api/health
+    envVars:
+      - key: NEBIUS_API_KEY
+        sync: false            # set in the Render dashboard, never committed
+      - key: SPINE_SERVER_CAP_USD
+        value: "5"             # total live spend this server instance may make
+      - key: SPINE_CHECK_CAP_USD
+        value: "0.10"
+      - key: PYTHON_VERSION
+        value: "3.11.9"

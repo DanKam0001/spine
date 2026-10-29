@@ -1,0 +1,9 @@
+.env
+__pycache__/
+*.pyc
+runs/
+bench/out/
+.pytest_cache/
+video/work/
+video/*.mp4
+TASK.md
