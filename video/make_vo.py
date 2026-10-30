@@ -6,6 +6,8 @@ HERE = Path(__file__).resolve().parent
 # keys come from the hackathon_scout bot's own .env (filled from Bots/master_env by sync_env.py)
 ENV = dotenv_values(Path.home() / "Desktop/Bots/hackathon_scout/.env")
 VOICE = ENV.get("ELEVENLABS_VOICE_ID")  # the user's voice clone
+# Pronunciation (picked by ear 30 Oct 2026): write "Nebyus" for Nebius with this voice + eleven_multilingual_v2;
+# "Neb-ee-us" and "Nebbius" came out as separate syllables. Speech-to-text is no proof either way.
 OUT = HERE / "vo"; OUT.mkdir(exist_ok=True)
 redo = set(sys.argv[1:])
 
